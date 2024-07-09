@@ -1,6 +1,6 @@
 variable "location" {
   type = string
-  default = "West US"
+  default = "East US"
 }
 
 variable "RG_name" {
