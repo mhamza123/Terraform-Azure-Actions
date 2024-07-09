@@ -80,7 +80,7 @@ resource "azurerm_virtual_machine" "test" {
   os_profile {
     computer_name  = "myVM"
     admin_username = "azureuser"
-    admin_password = "Password1234!"
+    admin_password = ""
   }
 
   os_profile_linux_config {
