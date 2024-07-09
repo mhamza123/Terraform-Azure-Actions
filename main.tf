@@ -1,3 +1,13 @@
+variable "location" {
+  description = "West US"
+  type        = string
+}
+
+variable "RG_name" {
+  description = "1-b94aa0d4-playground-sandbox"
+  type        = string
+}
+
 resource "azurerm_virtual_network" "vnet" {
   name                = "myVNet"
   address_space       = ["10.0.0.0/16"]
