@@ -1,0 +1,12 @@
+---
+- name: Modify NGINX configuration
+  lineinfile:
+    path: /etc/nginx/sites-available/default
+    regexp: '^(\s*)listen\s+80\s*;'
+    line: '    listen 81;'
+    state: present
+
+- name: Reload NGINX service
+  service:
+    name: nginx
+    state: reloaded

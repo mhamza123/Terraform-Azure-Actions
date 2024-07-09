@@ -1,0 +1,9 @@
+---
+- name: Install NGINX, Docker, Docker Compose, and Change NGINX Port
+  hosts: all
+  become: yes
+  roles:
+    - role: nginx_installation
+    - role: docker_installation
+    - role: docker_compose_installation
+    - role: nginx_ports_change
