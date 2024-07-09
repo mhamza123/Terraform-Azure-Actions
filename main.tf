@@ -14,9 +14,9 @@ resource "azurerm_subnet" "subnet" {
 
 resource "azurerm_public_ip" "public_ip" {
   name                = "myPublicIP"
-  location            = var.location
+  location            = "East US"
   resource_group_name = var.RG_name
-  allocation_method   = "Dynamic"
+  allocation_method   = "Static"
   sku                 = "Standard"
 }
 
