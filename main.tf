@@ -1,29 +1,29 @@
 resource "azurerm_virtual_network" "vnet" {
   name                = "myVNet"
   address_space       = ["10.0.0.0/16"]
-  location            = "West US"
-  resource_group_name = "1-0ea06169-playground-sandbox"
+  location            = var.location
+  resource_group_name = var.RG_name
 }
 
 resource "azurerm_subnet" "subnet" {
   name                 = "mySubnet"
-  resource_group_name  = "1-0ea06169-playground-sandbox"
+  resource_group_name  = var.RG_name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["10.0.1.0/24"]
 }
 
 resource "azurerm_public_ip" "public_ip" {
   name                = "myPublicIP"
-  location            = "West US"
-  resource_group_name = "1-0ea06169-playground-sandbox"
+  location            = var.location
+  resource_group_name = var.RG_name
   allocation_method   = "Static"
   sku                 = "Standard"
 }
 
 resource "azurerm_network_interface" "nic" {
   name                = "myNIC"
-  location            = "West US"
-  resource_group_name = "1-0ea06169-playground-sandbox"
+  location            = var.location
+  resource_group_name = var.RG_name
 
   ip_configuration {
     name                          = "myNICConfig"
@@ -35,8 +35,8 @@ resource "azurerm_network_interface" "nic" {
 
 resource "azurerm_network_security_group" "nsg" {
   name                = "myNSG"
-  location            = "West US"
-  resource_group_name = "1-0ea06169-playground-sandbox"
+  location            = var.location
+  resource_group_name = var.RG_name
 
   security_rule {
     name                       = "SSH"
@@ -58,8 +58,8 @@ resource "azurerm_network_interface_security_group_association" "example" {
 
 resource "azurerm_virtual_machine" "test" {
   name                  = "myVM"
-  location              = "West US"
-  resource_group_name   = "1-0ea06169-playground-sandbox"
+  location              = var.location
+  resource_group_name   = var.RG_name
   network_interface_ids = [azurerm_network_interface.nic.id]
   vm_size               = "Standard_DS1_v2"
 
@@ -80,7 +80,7 @@ resource "azurerm_virtual_machine" "test" {
   os_profile {
     computer_name  = "myVM"
     admin_username = "azureuser"
-    admin_password = ""
+    admin_password = "Password1234!"
   }
 
   os_profile_linux_config {
