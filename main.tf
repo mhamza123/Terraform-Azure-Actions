@@ -16,7 +16,7 @@ resource "azurerm_public_ip" "public_ip" {
   name                = "myPublicIP"
   location            = var.location
   resource_group_name = var.RG_name
-  allocation_method   = "Static"
+  allocation_method   = "Dynamic"
   sku                 = "Standard"
 }
 
