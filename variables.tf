@@ -5,5 +5,5 @@ variable "location" {
 
 variable "RG_name" {
   type = string
-  default = "1-b94aa0d4-playground-sandbox"
+  default = "11-23bc3de0-playground-sandbox"
 }
