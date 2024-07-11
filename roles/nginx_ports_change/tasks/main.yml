@@ -1,12 +1,19 @@
 ---
-- name: Modify NGINX configuration
+- name: Replace port 80 with 81
   lineinfile:
     path: /etc/nginx/sites-available/default
-    regexp: '^(\s*)listen\s+80\s*;'
-    line: '    listen 81;'
-    state: present
+    regexp: '^(\s*listen\s+)80(\s*.*)$'
+    line: '    listen 81 default_server;'
+    backup: yes
 
-- name: Reload NGINX service
+- name: Replace port 80 with 81
+  lineinfile:
+    path: /etc/nginx/sites-available/default
+    regexp: '^(\s*listen\s+\[::\]:)80(\s*.*)$'
+    line: '    listen [::]:81 default_server;'
+    backup: yes
+
+- name: Restart Nginx to apply changes
   service:
     name: nginx
-    state: reloaded
+    state: restarted
